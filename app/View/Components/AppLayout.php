@@ -2,6 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class AppLayout extends Component
@@ -26,6 +28,16 @@ class AppLayout extends Component
      */
     public function render()
     {
+        $userId = Auth::user()->id;
+         $user = User::find($userId);
+
+         $userInfo = $user ? $user->userInfo()->first() : null;
+         
+         $navItems = [
+             'bike' => $userInfo ? in_array('project_bike', json_decode($userInfo->project_implemented_type, true) ?? []) : false,
+             'solar' => $userInfo ? in_array('project_solar', json_decode($userInfo->project_implemented_type, true) ?? []) : false,
+         ];
+
         switch($this->layout){
             case 'horizontal':
                 return view('layouts.dashboard.horizontal');

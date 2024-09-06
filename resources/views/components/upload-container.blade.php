@@ -1,0 +1,49 @@
+@props([
+    'title' => 'Container Title',
+    'description' => 'Container description...',
+    'name' => 'File upload Name',
+    'link' => '',
+    'date' => '',
+    'tooltip_title' => ''
+])
+
+<div {!! $attributes->merge(['class' => 'p-4 border rounded-lg shadow-md bg-white relative file-upload-container']) !!}>
+    <div class="flex justify-between items-center">
+        <div>
+            <x-input-label for="project_mid_longterm_plan" :value="$title" :title="$tooltip_title" />
+            <p class="text-xs text-gray-500">{!! nl2br(e($description)) !!}</p>
+        </div>
+        <button type="button" class="text-gray-400 hover:text-gray-600 absolute top-2.5 right-2.5" aria-label="Close" onclick="removeContainer(this)">
+            &times;
+        </button>
+    </div>
+    @if($link)
+    <div class="mt-2 flex items-center space-x-2 text-gray-700">
+        <div class="font-semibold">
+            {{ __('Attached file') }}:
+        </div>
+        <div>
+            <a href="{{ Storage::url($link) }}" target="_blank" class="underline hover:text-blue-500">{{ Str::limit(basename($link), 20) }}</a>
+            <div>{{$date}}</div>
+        </div>
+        <a href="{{ Storage::url($link) }}" download="{{ $link }}" class="text-blue-500 hover:text-blue-700">
+            <i class="fa fa-download"></i>
+        </a>
+    </div>
+    @endif  
+
+    <div class="mt-4 flex justify-end">
+        {{ $slot }}
+        <x-custom-file-upload name="{{$name}}" />
+    </div>
+</div>
+
+<script>
+function removeContainer(button) {
+    // Find the closest parent div with the class 'file-upload-container' and remove it
+    var container = button.closest('.file-upload-container');
+    if (container) {
+        container.remove();
+    }
+}
+</script>

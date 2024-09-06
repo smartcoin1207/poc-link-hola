@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $users = [
-            [
+        [
                 'first_name' => 'System',
                 'last_name' => 'Admin',
                 'username' => 'systemadmin',
@@ -47,7 +47,18 @@ class UserTableSeeder extends Seeder
                 'email_verified_at' => now(),
                 'user_type' => 'user',
                 'status' => 'inactive'
-            ]
+            ],
+            [
+                'first_name' => 'Test',
+                'last_name' => 'User',
+                'username' => 'test_user',
+                'email' => 'test@example.com',
+                'password' => bcrypt('password'),
+                'phone_number' => '+12398190256',
+                'email_verified_at' => now(),
+                'user_type' => 'user',
+                'status' => 'inactive'
+            ],
         ];
         foreach ($users as $key => $value) {
             $user = User::create($value);
