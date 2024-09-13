@@ -11,11 +11,11 @@
         <div class="mt-4 form-group">
             <x-input-label for="project_implemented_type" :value="__('Project Implemented Type')" />
             
-            <div class="flex">
-                <div class="block mt-1 mr-4">
+            <div class="d-flex">
+                <div class="block mt-1 mr-4 mx-2">
                     <label for="project_bike" class="inline-flex items-center">
                         <input type="checkbox" id="project_bike" name="project_implemented_type[]" value="project_bike" 
-                        @if($exist_detailed_account && in_array('project_bike', json_decode($detailed_account->project_implemented_type ?: '', true) ?: [])) 
+                        @if($exist_detailed_account && in_array('project_bike', json_decode($detailed_account->project_implemented_type ?? '', true) ?: [])) 
                             checked 
                         @endif
                             class="form-checkbox">
@@ -23,10 +23,10 @@
                     </label>
                 </div>
                 
-                <div class="block mt-1">
+                <div class="block mt-1 mx-2">
                     <label for="project_solar" class="inline-flex items-center">
                         <input type="checkbox" id="project_solar" name="project_implemented_type[]" value="project_solar" 
-                        @if($exist_detailed_account && in_array('project_solar', json_decode($detailed_account->project_implemented_type ?: '', true) ?: [])) 
+                        @if($exist_detailed_account && in_array('project_solar', json_decode($detailed_account->project_implemented_type ?? '', true) ?: [])) 
                             checked 
                         @endif
                             class="form-checkbox">
@@ -37,14 +37,13 @@
             </div>
         </div>
 
-
         <!-- Corporate Type -->
         <div class="mt-4 form-group ">
             <x-input-label for="coporate_type" :value="__('Corporate Type')" />
-            <select id="coporate_type" name="coporate_type" class="block mt-1 w-full" required>
+            <x-select id="coporate_type" name="coporate_type" class="block mt-1 w-full" required>
                 <option value="application" @if($exist_detailed_account && $detailed_account->coporate_type == "application") selected  @endif >{{ __('Application Coporation') }}</option>
                 <option value="credit" @if($exist_detailed_account && $detailed_account->coporate_type == "credit") selected @endif >{{ __('Credit Coporation') }}</option>
-            </select>
+            </x-select>
             <x-input-error :messages="$errors->get('coporate_type')" class="mt-2" />
         </div>
         <div class="row">
@@ -177,7 +176,7 @@
         </div>
 
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 mt-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('detailed_status') === 'profile-detailed-updated')

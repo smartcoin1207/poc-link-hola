@@ -1,15 +1,13 @@
 <x-app-layout>
-
-    <div class="page-content" style="background-image: url('assets/images/wizard-v1.jpg')">
+@include('partials.dashboard._custom_head')
+    <div class="page-content">
         <div class="wizard-v1-content">
             <div class="wizard-form">
                 <form class="form-register" id="form-register">
-
                     <div id="form-total">
-                        <h2>
-                            <span class="step-icon"><i class="zmdi zmdi-card"></i></span>
-                            <span class="step-text">自動計算と検算</span>
-                        </h2>
+                        <h4 class="text-center">
+                            <span class="step-text text-center">自動計算と検算</span>
+                        </h4>
                         <section>
                             <div class="inner">
                                 <div class="form-row table-responsive">

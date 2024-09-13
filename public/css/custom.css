@@ -517,3 +517,189 @@ body.uikit .btn-download {
 .top-1 {
   top: 1rem;
 }
+
+.custom .form-control {
+  color: #0c112e;
+}
+
+.custom .form-group label {
+  margin-bottom: 5px;
+}
+
+.custom hr {
+  margin: 0px;
+  border: 0.5px solid;
+}
+
+.custom .title-label {
+  margin: 10px 0;
+}
+
+.custom label {
+  color:#0c112e;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right .5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.circle-progress {
+  position: relative;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+@media (min-width: 640px) {
+  .sm\:col-span-1 {
+      grid-column:span 1 / span 1
+  }
+
+  .sm\:col-span-2 {
+      grid-column: span 2 / span 2
+  }
+
+  .sm\:-my-px {
+      margin-top: -1px;
+      margin-bottom: -1px
+  }
+
+  .sm\:mx-auto {
+      margin-left: auto;
+      margin-right: auto
+  }
+
+  .sm\:ms-10 {
+      margin-inline-start:2.5rem}
+
+  .sm\:ms-6 {
+      margin-inline-start:1.5rem}
+
+  .sm\:mt-10 {
+      margin-top: 2.5rem
+  }
+
+  .sm\:flex {
+      display: flex
+  }
+
+  .sm\:hidden {
+      display: none
+  }
+
+  .sm\:w-full {
+      width: 100%
+  }
+
+  .sm\:max-w-2xl {
+      max-width: 42rem
+  }
+
+  .sm\:max-w-lg {
+      max-width: 32rem
+  }
+
+  .sm\:max-w-md {
+      max-width: 28rem;
+  }
+
+  .sm\:max-w-sm {
+      max-width: 24rem
+  }
+
+  .sm\:max-w-xl {
+      max-width: 36rem
+  }
+
+  .sm\:flex-1 {
+      flex: 1 1 0%
+  }
+
+  .sm\:translate-y-0 {
+      --tw-translate-y: 0px;
+      transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+  }
+
+  .sm\:scale-100 {
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+  }
+
+  .sm\:scale-95 {
+      --tw-scale-x: .95;
+      --tw-scale-y: .95;
+      transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+  }
+
+  .sm\:items-center {
+      align-items: center
+  }
+
+  .sm\:justify-start {
+      justify-content: flex-start
+  }
+
+  .sm\:justify-center {
+      justify-content: center
+  }
+
+  .sm\:justify-between {
+      justify-content: space-between
+  }
+
+  .sm\:gap-6 {
+      gap: 1.5rem
+  }
+
+  .sm\:rounded-lg {
+      border-radius: .5rem
+  }
+
+  .sm\:p-12 {
+      padding: 3rem
+  }
+
+  .sm\:p-8 {
+      padding: 2rem
+  }
+
+  .sm\:px-0 {
+      padding-left: 0;
+      padding-right: 0
+  }
+
+  .sm\:px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem
+  }
+
+  .sm\:py-5 {
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem
+  }
+
+  .sm\:pt-0 {
+      padding-top: 0
+  }
+
+  .sm\:text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem
+  }
+}

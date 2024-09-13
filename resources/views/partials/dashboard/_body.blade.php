@@ -5,16 +5,16 @@
 <main class="main-content">
     <div class="position-relative">
         @include('partials.dashboard._body_header')
-        @include('partials.dashboard.sub-header')
+        <!-- @include('partials.dashboard.sub-header') -->
     </div>
 
-    <div class="conatiner-fluid content-inner mt-n5 py-0">
+    <div class="conatiner-fluid content-inner py-0">
         {{ $slot }}
     </div>
 
     @include('partials.dashboard._body_footer')
 </main>
-<a class="btn btn-fixed-end btn-warning btn-icon btn-setting" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+<!-- <a class="btn btn-fixed-end btn-warning btn-icon btn-setting" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
     role="button" aria-controls="offcanvasExample">
     <svg width="24" viewBox="0 0 24 24" class="animated-rotate" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -23,7 +23,7 @@
         <circle cx="12.1747" cy="11.8891" r="2.63616" stroke="currentColor" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round"></circle>
     </svg>
-</a>
+</a> -->
 @include('partials.components.setting-offcanvas')
 @include('partials.dashboard._scripts')
 @include('partials.dashboard._app_toast')

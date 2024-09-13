@@ -3748,6 +3748,22 @@ textarea.form-control-lg {
   color: var(--bs-nav-link-color);
   transition: all 300ms ease-in-out;
 }
+
+.horizontal-nav .nav-link {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.horizontal-nav .nav-link.active {
+  font-size: 1.25rem;
+  font-weight: 600;
+  /* text-decoration: underline; */
+}
+
+.horizontal-nav .nav-item:has(.nav-link.active) {
+  border-bottom: 2px solid;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
     transition: none;
@@ -14464,12 +14480,12 @@ thead, tbody, tfoot, tr, td, th {
 }
 
 .card-slide .card-slie-arrow {
-  left: 42px;
+  left: 18px;
   right: 0px;
   width: 24px;
   height: 24px;
   position: absolute;
-  top: 42px;
+  top: 18px;
   -o-object-fit: cover;
      object-fit: cover;
 }

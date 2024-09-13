@@ -33,6 +33,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        //customize first login
+        $user = Auth::user();
+        if ($user->first_login) {
+            // Update the user to indicate they've logged in
+            $user->first_login = false;
+            $user->save();
+
+            return redirect()->route('password.change_form', ['first_login' => true]);
+        }
         return redirect(RouteServiceProvider::HOME);
     }
 

@@ -2,21 +2,21 @@
   "use strict";
 if (document.querySelectorAll('#myChart').length) {
   const options = {
-    series: [55, 75],
+    series: [55, 75, 60, 85],
     chart: {
     height: 230,
     type: 'radialBar',
   },
-  colors: ["#4bc7d2", "#3a57e8"],
+  colors: ["#4bc7d2", "#3a57e8", "#f16a1b", "#f16a1c"],
   plotOptions: {
     radialBar: {
       hollow: {
           margin: 10,
-          size: "50%",
+          size: "25%",
       },
       track: {
           margin: 10,
-          strokeWidth: '50%',
+          strokeWidth: '25%',
       },
       dataLabels: {
           show: false,
@@ -38,12 +38,21 @@ if (document.querySelectorAll('#myChart').length) {
 if (document.querySelectorAll('#d-activity').length) {
     const options = {
       series: [{
-        name: 'Successful deals',
-        data: [30, 50, 35, 60, 40, 60, 60, 30, 50, 35,]
+        name: '総ベースライン排出量',
+        data: [30, 50, 35, 60]
       }, {
-        name: 'Failed deals',
-        data: [40, 50, 55, 50, 30, 80, 30, 40, 50, 55]
-      }],
+        name: '総プロジェクト実施後排出量',
+        data: [40, 50, 55, 50]
+      },
+      {
+        name: '総CO2削減量',
+        data: [35, 45, 37, 35]
+      },
+      {
+        name: '総CO2クレジット量（③と同じ値）',
+        data: [36, 38, 16, 24]
+      }
+    ],
       chart: {
         type: 'bar',
         height: 230,
@@ -73,7 +82,7 @@ if (document.querySelectorAll('#d-activity').length) {
         colors: ['transparent']
       },
       xaxis: {
-        categories: ['S', 'M', 'T', 'W', 'T', 'F', 'S', 'M', 'T', 'W'],
+        categories: ['2021', '2022', '2023', '2024'],
         labels: {
           minHeight:20,
           maxHeight:20,
@@ -117,10 +126,17 @@ if (document.querySelectorAll('#d-main').length) {
   const options = {
       series: [{
           name: 'total',
-          data: [94, 80, 94, 80, 94, 80, 94]
+          data: [94, 80, 94, 80]
       }, {
           name: 'pipline',
-          data: [72, 60, 84, 60, 74, 60, 78]
+          data: [72, 60, 84, 60]
+      },
+      {
+          name: 'solar',
+          data: [56, 78, 86, 68]
+      }, {
+          name: 'bike',
+          data: [89, 87, 90, 96]
       }],
       chart: {
           fontFamily: '"Inter", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
@@ -168,7 +184,7 @@ if (document.querySelectorAll('#d-main').length) {
           lines: {
               show: false  //or just here to disable only x axis grids
           },
-          categories: ["Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug"]
+          categories: ["2021", "2022", "2023", "2024"]
       },
       grid: {
           show: false,

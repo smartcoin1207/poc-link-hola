@@ -7,14 +7,13 @@
     'tooltip_title' => ''
 ])
 
-<div {!! $attributes->merge(['class' => 'p-4 border rounded-lg shadow-md bg-white relative file-upload-container']) !!}>
-    <div class="flex justify-between items-center">
+<div {!! $attributes->merge(['class' => 'p-4 border rounded-lg shadow-md bg-white position-relative file-upload-container']) !!}>
+    <div class="d-flex justify-content-between align-items-center">
         <div>
             <x-input-label for="project_mid_longterm_plan" :value="$title" :title="$tooltip_title" />
             <p class="text-xs text-gray-500">{!! nl2br(e($description)) !!}</p>
         </div>
-        <button type="button" class="text-gray-400 hover:text-gray-600 absolute top-2.5 right-2.5" aria-label="Close" onclick="removeContainer(this)">
-            &times;
+        <button type="button" class="text-gray-400 position-absolute btn-close" style="top: 0.625rem; right: 0.625rem;" aria-label="Close" onclick="removeContainer(this)">
         </button>
     </div>
     @if($link)
@@ -32,7 +31,7 @@
     </div>
     @endif  
 
-    <div class="mt-4 flex justify-end">
+    <div class="mt-4 d-flex justify-content-end">
         {{ $slot }}
         <x-custom-file-upload name="{{$name}}" />
     </div>

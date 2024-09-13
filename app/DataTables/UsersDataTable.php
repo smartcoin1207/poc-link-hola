@@ -19,12 +19,6 @@ class UsersDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('userProfile.country', function($query) {
-                return $query->userProfile->country ?? '-';
-            })
-            ->editColumn('userProfile.company_name', function($query) {
-                return $query->userProfile->company_name ?? '-';
-            })
             ->editColumn('status', function($query) {
                 $status = 'warning';
                 switch ($query->status) {
@@ -38,7 +32,7 @@ class UsersDataTable extends DataTable
                         $status = 'dark';
                         break;
                 }
-                return '<span class="text-capitalize badge bg-'.$status.'">'.$query->status.'</span>';
+                return '<span class="text-capitalize badge bg-'.$status.'">'.__($query->status).'</span>';
             })
             ->editColumn('created_at', function($query) {
                 return date('Y/m/d',strtotime($query->created_at));
@@ -46,16 +40,6 @@ class UsersDataTable extends DataTable
             ->filterColumn('full_name', function($query, $keyword) {
                 $sql = "CONCAT(users.first_name,' ',users.last_name)  like ?";
                 return $query->whereRaw($sql, ["%{$keyword}%"]);
-            })
-            ->filterColumn('userProfile.company_name', function($query, $keyword) {
-                return $query->orWhereHas('userProfile', function($q) use($keyword) {
-                    $q->where('company_name', 'like', "%{$keyword}%");
-                });
-            })
-            ->filterColumn('userProfile.country', function($query, $keyword) {
-                return $query->orWhereHas('userProfile', function($q) use($keyword) {
-                    $q->where('country', 'like', "%{$keyword}%");
-                });
             })
             ->addColumn('action', 'users.action')
             ->rawColumns(['action','status']);
@@ -100,15 +84,14 @@ class UsersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            ['data' => 'id', 'name' => 'id', 'title' => 'id'],
-            ['data' => 'full_name', 'name' => 'full_name', 'title' => 'FULL NAME', 'orderable' => false],
-            ['data' => 'phone_number', 'name' => 'phone_number', 'title' => 'Phone Number'],
-            ['data' => 'email', 'name' => 'email', 'title' => 'Email'],
-            ['data' => 'userProfile.country', 'name' => 'userProfile.country', 'title' => 'Country'],
-            ['data' => 'status', 'name' => 'status', 'title' => 'Status'],
-            ['data' => 'userProfile.company_name', 'name' => 'userProfile.company_name', 'title' => 'Company'],
-            ['data' => 'created_at', 'name' => 'created_at', 'title' => 'Join Date'],
+            ['data' => 'id', 'name' => 'id', 'title' => 'ID'],
+            ['data' => 'full_name', 'name' => 'full_name', 'title' => __('Full Name'), 'orderable' => false],
+            // ['data' => 'phone_number', 'name' => 'phone_number', 'title' => __('Phone Number')],
+            ['data' => 'email', 'name' => 'email', 'title' => __('Email')],
+            ['data' => 'status', 'name' => 'status', 'title' => __('Status')],
+            ['data' => 'created_at', 'name' => 'created_at', 'title' => __('Join Date')],
             Column::computed('action')
+                  ->title(__('Action'))
                   ->exportable(false)
                   ->printable(false)
                   ->searchable(false)

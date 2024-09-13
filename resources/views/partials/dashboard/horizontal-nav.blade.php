@@ -13,11 +13,22 @@
          <button class="btn-close float-end"></button>
       </div>
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link {{activeRoute(route('menu-style.horizontal'))}}" href="{{route('menu-style.horizontal')}}"> Horizontal </a></li>
-         <li class="nav-item"><a class="nav-link {{activeRoute(route('menu-style.dualhorizontal'))}}" href="{{route('menu-style.dualhorizontal')}}"> Dual Horizontal </a></li>
-         <li class="nav-item"><a class="nav-link {{activeRoute(route('menu-style.dualcompact'))}}" href="{{route('menu-style.dualcompact')}}"><span class="item-name">Dual Compact</span></a></li>
-         <li class="nav-item"><a class="nav-link {{activeRoute(route('menu-style.boxed'))}}" href="{{route('menu-style.boxed')}}"> Boxed Horizontal </a></li>
-         <li class="nav-item"><a class="nav-link {{activeRoute(route('menu-style.boxedfancy'))}}" href="{{route('menu-style.boxedfancy')}}"> Boxed Fancy</a></li>
+        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            {{ __('Dashboard') }} 
+         </x-nav-link>
+        <x-nav-link :href="route('bike.form')" :active="request()->routeIs('bike.*')">
+            {{ __('E Bike') }}
+         </x-nav-link>
+         <x-nav-link :href="route('solar.calculate.index')" :active="request()->routeIs('solar.calculate.*')">
+            {{ __('Solar Light') }}
+         </x-nav-link>
+         <x-nav-link :href="route('project.detail.index')" :active="request()->routeIs('project.detail.*')">
+            {{ __('プロジェクト') }} 
+         </x-nav-link>
+
+         <x-nav-link :href="route('project.verification.index')" :active="request()->routeIs('project.verification.*')">
+            {{ __('Verification Status') }} 
+         </x-nav-link>
       </ul>
    </div> <!-- container-fluid.// -->
 </nav>

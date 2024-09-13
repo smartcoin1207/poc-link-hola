@@ -27,4 +27,8 @@ class Solar extends Model
         'comment',
         'csv_id'
     ];
+
+    public function userProfile() {
+        return $this->hasOne(UserProfile::class, 'user_id', 'id');
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\SolarDataTable;
+use App\DataTables\UsersDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Solar;
@@ -9,13 +11,12 @@ use App\Models\SolarCsv;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
-
 class SolarCalculateController extends Controller
 {
     /**
      * リソースのリストを表示します。
      */
-    public function index(Request $request)
+    public function index1(Request $request)
     {
         //修正されたcsvを確認する
         $allSolarCsvRecords = SolarCsv::all();
@@ -46,6 +47,24 @@ class SolarCalculateController extends Controller
                 'corrected_csv' => $is_corrected_csv == 1 ? "補正データ" : "非補正データ"
             ]);
     }
+
+    public function index(SolarDataTable $dataTable)
+    {
+        $allSolarCsvRecords = SolarCsv::all();
+        $lastSolarCsvRecord = SolarCsv::orderBy('created_at', 'desc')->first();
+        $is_corrected_csv = (isset($lastSolarCsvRecord['corrected_csv']) && $lastSolarCsvRecord['corrected_csv']) ? 1 : 0;
+
+        $processedData = self::getProcessedData();
+
+        $lastSolarCsvRecord = SolarCsv::orderBy('created_at', 'desc')->first();
+        $is_corrected_csv = (isset($lastSolarCsvRecord['corrected_csv']) && $lastSolarCsvRecord['corrected_csv']) ? 1 : 0;
+        $pageTitle = 'ソーラーテーブル' . ($is_corrected_csv ? "(補正データ)" : "(非補正データ)");
+
+        $assets = ['data-table'];
+        $headerAction = '<a href="'.route('users.create').'" class="btn btn-sm btn-primary" role="button">Add User</a>';
+        return $dataTable->render('solar.index', compact('pageTitle','assets', 'processedData'));
+    }
+    
 
     public function processedData(Request $request)
     {

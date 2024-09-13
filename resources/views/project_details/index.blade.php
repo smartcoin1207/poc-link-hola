@@ -1,15 +1,12 @@
 <x-app-layout>
     @csrf
-    <div class="mt-4  font-bold text-2xl text-center">{{__('プロジェクト一覧')}}</div>
+    <h4 class="mt-4 text-center">{{__('プロジェクト一覧')}}</h4>
 
-    <div class="row flex w-full max-w-4xl m-auto justify-end">
+    <div class="mt-2 mb-2 d-flex justify-content-end">
         @if(!($isEvaluator ?? ''))
-        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="location.href='{{ route('project.detail.create') }}'">
-            {{ __('Register a new project') }}
-            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-            </svg>
-        </button>
+            <button type="button" class="btn btn-primary" onclick="location.href='{{ route('project.detail.create') }}'">
+                {{ __('Register a new project') }}
+            </button>
         @endif
     </div>
     

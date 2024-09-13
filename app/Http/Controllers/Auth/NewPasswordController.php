@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -59,5 +60,31 @@ class NewPasswordController extends Controller
                     ? redirect()->route('login')->with('status', __($status))
                     : back()->withInput($request->only('email'))
                             ->withErrors(['email' => __($status)]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $firstLogin = $request->query('first_login', false);
+        return view('auth.change-password', ['request' => $request, 'first_login' => $firstLogin]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'password' => 'required|string|confirmed|min:8',
+        ]);
+
+        $first_login = $request->first_login;
+
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        if($first_login) {
+            return redirect()->route('profile.edit');
+        }
+
+        return redirect()->back()->with('success', __('Password updated successfully.'));
     }
 }

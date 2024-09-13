@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use Symfony\Component\VarDumper\VarDumper;
 
 class ProfileController extends Controller
 {
@@ -21,11 +22,11 @@ class ProfileController extends Controller
         $user = User::find($userId);
 
         $exist_detailed_account = false;
-        if ($user->userInfo()->exists()) {
+        if ($user->userProfile()->exists()) {
             $exist_detailed_account = true;
         }
 
-        $detailed_account = $user->userInfo()->first();
+        $detailed_account = $user->userProfile()->first();
         
         return view('profile.edit', [
             'user' => $request->user(),
@@ -37,15 +38,29 @@ class ProfileController extends Controller
     /**
      * ユーザーのプロフィール情報を更新します。
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $request->validate([
+            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = Auth::user();
+
+        $data = [
+            'username' => $request->username,
+            'email' => $request->email,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name
+        ];
+
+        if ($user->email !== $request->email) {
+            $data['email_verified_at'] = null;
         }
 
-        $request->user()->save();
+        $user->update($data);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -81,9 +96,9 @@ class ProfileController extends Controller
         $userId = $AuthUser->id;
         $user = User::find($userId);
 
-        if (!$user->userInfo()->exists()) {
+        if (!$user->userProfile()->exists()) {
             // ユーザーに関連付けられたユーザー情報を作成する
-            $user->userinfo()->create([
+            $user->userProfile()->create([
                 'project_implemented_type' => $request->project_implemented_type ? json_encode($request->project_implemented_type) : json_encode([]),
                 'coporate_type' => $request->coporate_type,
                 'corporate_number' => $request->corporate_number,
@@ -106,7 +121,7 @@ class ProfileController extends Controller
             ]);
         } else {
             // ユーザーに関連付けられたユーザー情報を作成する
-            $user->userinfo()->update([
+            $user->userProfile()->update([
                 'project_implemented_type' => $request->project_implemented_type ? json_encode($request->project_implemented_type) : json_encode([]),
                 'coporate_type' => $request->coporate_type,
                 'corporate_number' => $request->corporate_number,

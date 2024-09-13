@@ -1,12 +1,13 @@
 <x-app-layout>
-<div class="page-content" style="background-image: url('assets/images/wizard-v1.jpg')">
+    @include('partials.dashboard._custom_head')
+<div class="page-content custom">
             <div class="wizard-v1-content">
                 <div class="wizard-form">
                     <form class="form-register" id="form-register" action="{{route('bike.action')}}" method="post">
                         @csrf
                         <div id="form-total">
                             <!-- SECTION 1 -->
-                            <h2>
+                            <h2 style="display: none;">
                                 <span class="step-icon"><i class="zmdi zmdi-account"></i></span>
                                 <span class="step-number">ステップ１</span>
                                 <span class="step-text"> 申請入力フォーム</span>
@@ -14,121 +15,144 @@
                             <section>
                                 <!-- project start -->
                                 <div class="inner">
-                                    <div class="form-row">
-                                        <div class="form-title-holder form-holder-1">
-                                            <label class="title-label" for="project">プロジェクト情報入力</label>
+                                    <div class="row">
+                                        <div class=" col-md-12">
+                                            <h4 class="title-label fs-4" for="project">プロジェクト情報入力</h4>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-holder form-holder-2">
-                                            <label for="username">プロジェクト名*</label>
-                                            <input type="text" placeholder="プロジェクト名" class="form-control" id="project_name" name="project_name" required>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="project_name">プロジェクト名*</label>
+                                                <input type="text" placeholder="プロジェクト名" class="form-control" id="project_name" name="project_name" required>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-holder form-holder-2">
-                                            <label for="company_name">会社名*</label>
-                                            <input type="text" placeholder="会社名" class="form-control" id="company_name" name="company_name" required>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="company_name">会社名*</label>
+                                                <input type="text" placeholder="会社名" class="form-control" id="company_name" name="company_name" required>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-holder">
-                                            <label for="user_name">担当者名*</label>
-                                            <input type="text" placeholder="担当者名" class="form-control" id="user_name" name="user_name" required>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="user_name">担当者名*</label>
+                                                <input type="text" placeholder="担当者名" class="form-control" id="user_name" name="user_name" required>
+                                            </div>
                                         </div>
-                                        <div class="form-holder">
-                                            <label for="contact">連絡先*</label>
-                                            <input type="text" placeholder="連絡先" class="form-control" id="contact" name="contact" required>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="contact">連絡先*</label>
+                                                <input type="text" placeholder="連絡先" class="form-control" id="contact" name="contact" required>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- project end  -->
-                                     <hr><hr>
+                                     <hr>
                                     <!-- bike start -->
-                                    <div class="form-row" style="margin-top: 10px;">
-                                        <div class="form-title-holder form-holder-1">
-                                            <label class="title-label" for="bike">バイク情報入力</label>
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class=" col-md-6">
+                                            <h4 class="title-label fs-4" for="bike">バイク情報入力</h4>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-holder form-holder-2">
-                                            <label for="bike_kind">電動バイクの種類*</label>
-                                            <select class="form-control" id="bike_kind" name="bike_kind" required>
-                                                <option value="" disabled selected>電動バイクの種類</option>
-                                                <option value="Evo 200 Lite">エボ200Lite</option>
-                                                <option value="Evo 200">エボ200</option>
-                                                <option value="Feliz S">フェリスS</option>
-                                                <option value="Klara S">クララS</option>
-                                                <option value="Vento S">ベントS</option>
-                                                <option value="Theon S">テオンS</option>
-
-                                            </select>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="bike_kind">電動バイクの種類*</label>
+                                                <select class="form-control" id="bike_kind" name="bike_kind" required>
+                                                    <option value="" disabled selected>電動バイクの種類</option>
+                                                    <option value="Evo 200 Lite">エボ200Lite</option>
+                                                    <option value="Evo 200">エボ200</option>
+                                                    <option value="Feliz S">フェリスS</option>
+                                                    <option value="Klara S">クララS</option>
+                                                    <option value="Vento S">ベントS</option>
+                                                    <option value="Theon S">テオンS</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-holder">
-                                            <label for="bike_count">導入台数*</label>
-                                            <input type="number" placeholder="導入台数" class="form-control" id="bike_count" name="bike_count" required>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="bike_count">導入台数*</label>
+                                                <input type="number" placeholder="導入台数" class="form-control" id="bike_count" name="bike_count" required>
+                                            </div>
                                         </div>
-                                        <div class="form-holder">
-                                            <label for="distance_year">年間走行距離（km/年）*</label>
-                                            <input type="text" placeholder="年間走行距離（km/年）" class="form-control" id="distance_year" name="distance_year" required>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="distance_year">年間走行距離（km/年）*</label>
+                                                <input type="text" placeholder="年間走行距離（km/年）" class="form-control" id="distance_year" name="distance_year" required>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- bike end -->
-                                     <hr><hr>
+                                     <hr>
                                     <!-- base line info start -->
-                                    <div class="form-row" style="margin-top: 10px;">
-                                        <div class="form-title-holder form-holder-1">
-                                            <label class="title-label" for="base_line">ベースライン情報入力</label>
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class=" col-md-6">
+                                            <h4 class="title-label fs-4" for="base_line">ベースライン情報入力</h4>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-holder form-holder-2">
-                                            <label for="base_line_bike_kind">ベースラインのガソリンバイクの種類*</label>
-                                            <select class="form-control" id="base_line_bike_kind" name="base_line_bike_kind" required>
-                                                <option value="" disabled selected>ベースラインのガソリンバイクの種類</option>
-                                                <option value="YAMAHA EXCITER">YAMAHAのEXCITER</option>
-                                                <option value="YAMAHA NVX">YAMAHAのNVX</option>
-                                                <option value="HONDA AirBrade">HONDAのAirBrade</option>
-                                                <option value="YAMAHA EXCITER">イタリアのブランドVESPAのPRIMAVERA</option>
-                                                <option value="YAMHA GRANDE">YAMHAのGRANDE</option>
-                                                <option value="YAMAHA JANUS">YAMAHAのJANUS</option>
-                                            </select>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="base_line_bike_kind">ベースラインのガソリンバイクの種類*</label>
+                                                <select class="form-control" id="base_line_bike_kind" name="base_line_bike_kind" required>
+                                                    <option value="" disabled selected>ベースラインのガソリンバイクの種類</option>
+                                                    <option value="YAMAHA EXCITER">YAMAHAのEXCITER</option>
+                                                    <option value="YAMAHA NVX">YAMAHAのNVX</option>
+                                                    <option value="HONDA AirBrade">HONDAのAirBrade</option>
+                                                    <option value="YAMAHA EXCITER">イタリアのブランドVESPAのPRIMAVERA</option>
+                                                    <option value="YAMHA GRANDE">YAMHAのGRANDE</option>
+                                                    <option value="YAMAHA JANUS">YAMAHAのJANUS</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-holder">
-                                            <label for="fuel_efficiency">燃料消費効率（km/L）*</label>
-                                            <input type="text" placeholder="燃料消費効率（km/L）" class="form-control" id="fuel_efficiency" name="fuel_efficiency" required>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="fuel_efficiency">燃料消費効率（km/L）*</label>
+                                                <input type="text" placeholder="燃料消費効率（km/L）" class="form-control" id="fuel_efficiency" name="fuel_efficiency" required>
+                                            </div>
                                         </div>
-                                        <div class="form-holder">
-                                            <label for="emission_factor">使用燃料の排出係数（tCO2/L）*</label>
-                                            <input type="text" placeholder="使用燃料の排出係数（tCO2/L）" class="form-control" id="emission_factor" name="emission_factor" required>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="emission_factor">使用燃料の排出係数（tCO2/L）*</label>
+                                                <input type="text" placeholder="使用燃料の排出係数（tCO2/L）" class="form-control" id="emission_factor" name="emission_factor" required>
+                                            </div>
                                         </div>
                                     </div>
                                      <!-- base line info end  -->
-                                      <hr><hr>
+                                      <hr>
                                      <!-- post implementation info start -->
-                                     <div class="form-row" style="margin-top: 10px;">
-                                        <div class="form-title-holder form-holder-1">
-                                            <label class="title-label" for="post_implementation_info">実施後情報入力</label>
+                                     <div class="row" style="margin-top: 10px;">
+                                        <div class=" col-md-6">
+                                            <h4 class="title-label fs-4" for="post_implementation_info">実施後情報入力</h4>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-holder">
-                                            <label for="ele_consum_efficiency">電力消費効率（km/kWh）*</label>
-                                            <input type="text" placeholder="電力消費効率（km/kWh）" class="form-control" id="ele_consum_efficiency" name="ele_consum_efficiency" required>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ele_consum_efficiency">電力消費効率（km/kWh）*</label>
+                                                <input type="text" placeholder="電力消費効率（km/kWh）" class="form-control" id="ele_consum_efficiency" name="ele_consum_efficiency" required>
+                                            </div>
                                         </div>
-                                        <div class="form-holder">
-                                            <label for="co2_count">電力のCO2排出係数（tCO2/kWh）*</label>
-                                            <input type="text" placeholder="電力のCO2排出係数（tCO2/kWh）" class="form-control" id="co2_count" name="co2_count" required>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="co2_count">電力のCO2排出係数（tCO2/kWh）*</label>
+                                                <input type="text" placeholder="電力のCO2排出係数（tCO2/kWh）" class="form-control" id="co2_count" name="co2_count" required>
+                                            </div>
                                         </div>
                                     </div>
                                      <!-- post implementation info end -->
                                 </div>
                             </section>
                             <!-- SECTION 2 -->
-                            <h2>
+                            <h2 style="display: none;">
                                 <span class="step-icon"><i class="zmdi zmdi-card"></i></span>
                                 <span class="step-number">ステップ２</span>
                                 <span class="step-text">申請入力確認</span>
@@ -136,7 +160,7 @@
                             <section>
                                 <div class="inner">
                                     <h3>詳細を確認</h3>
-                                        <div class="form-row table-responsive">
+                                        <div class="row table-responsive">
                                             <table class="table">
                                                 <tbody>
                                                     <tr class="space-row">
@@ -197,4 +221,14 @@
                 </div>
             </div>
         </div>
+@include('partials.dashboard._custom_footer')
 </x-app-layout>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/localization/messages_ja.min.js"></script>
+<script src="{{asset('assets/js/jquery.steps.js')}}"></script>
+<script src="{{asset('assets/vendor/bootrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>

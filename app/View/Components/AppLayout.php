@@ -31,12 +31,18 @@ class AppLayout extends Component
         $userId = Auth::user()->id;
          $user = User::find($userId);
 
-         $userInfo = $user ? $user->userInfo()->first() : null;
+         $userProfile = $user ? $user->userProfile()->first() : null;
          
          $navItems = [
-             'bike' => $userInfo ? in_array('project_bike', json_decode($userInfo->project_implemented_type, true) ?? []) : false,
-             'solar' => $userInfo ? in_array('project_solar', json_decode($userInfo->project_implemented_type, true) ?? []) : false,
+             'bike' => $userProfile ? in_array('project_bike', json_decode($userProfile->project_implemented_type, true) ?? []) : false,
+             'solar' => $userProfile ? in_array('project_solar', json_decode($userProfile->project_implemented_type, true) ?? []) : false,
          ];
+
+         // Check if the user has the 'user' role
+        if ($user && $user->hasRole('user')) {
+            // Automatically set layout to 'horizontal' for users with the 'user' role
+            $this->layout = 'horizontal';
+        }
 
         switch($this->layout){
             case 'horizontal':

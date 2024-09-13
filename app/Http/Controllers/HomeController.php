@@ -131,6 +131,7 @@ class HomeController extends Controller
     {
         return view('auth.recoverpw');
     }
+    
     public function userprivacysetting(Request $request)
     {
         return view('auth.user-privacy-setting');

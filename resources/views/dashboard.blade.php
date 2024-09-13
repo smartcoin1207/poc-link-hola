@@ -1,5 +1,5 @@
 <x-app-layout :assets="['chart', 'animation']">
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-md-12 col-lg-12">
         <div class="row row-cols-1">
             <div class="d-slider1 overflow-hidden ">

@@ -5,27 +5,32 @@
         @method('PUT')
     @endif
 
-    <div class="mt-4  font-bold text-2xl text-center">
-        @if($step == 1)
-            {{ __('Project Overview') }}{{ $is_update ? __('の編集') : __('の登録') }}
-        @elseif($step == 2)
-            {{__('プロジェクト計画書 (PDD-1)')}}{{ $is_update ? __('の編集') : __('の登録') }}
-        @elseif($step == 3)
-            {{__('プロジェクト計画書 (PDD-2)')}}{{ $is_update ? __('の編集') : __('の登録') }}
-        @elseif($step == 4)
-            {{__('プロジェクト計画書 (PDD-3)')}}{{ $is_update ? __('の編集') : __('の登録') }}
-        @elseif($step == 5)
-            {{__('ESG+E評価')}}{{ $is_update ? __('の編集') : __('の登録') }}
-        @endif
+    <div class="sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        <div class="w-full sm:max-w-md m-auto">
+            <div class="mt-4  font-bold text-2xl text-center">
+                @if($step == 1)
+                    {{ __('Project Overview') }}{{ $is_update ? __('の編集') : __('の登録') }}
+                @elseif($step == 2)
+                    {{__('プロジェクト計画書 (PDD-1)')}}{{ $is_update ? __('の編集') : __('の登録') }}
+                @elseif($step == 3)
+                    {{__('プロジェクト計画書 (PDD-2)')}}{{ $is_update ? __('の編集') : __('の登録') }}
+                @elseif($step == 4)
+                    {{__('プロジェクト計画書 (PDD-3)')}}{{ $is_update ? __('の編集') : __('の登録') }}
+                @elseif($step == 5)
+                    {{__('ESG+E評価')}}{{ $is_update ? __('の編集') : __('の登録') }}
+                @endif
+            </div>
+            <!-- start step indicators -->
+            <div class="form-header d-flex gap-3 mb-4 mt-4 text-xs text-center " style="width: 100%;">
+                <span class="stepIndicator flex-1 pb-8 position-relative"></span>
+                <span class="stepIndicator flex-1 pb-8 position-relative"></span>
+                <span class="stepIndicator flex-1 pb-8 position-relative"></span>
+                <span class="stepIndicator flex-1 pb-8 position-relative"></span>
+                <span class="stepIndicator flex-1 pb-8 position-relative"></span>
+            </div>
+        </div>
     </div>
-     <!-- start step indicators -->
-     <div class="form-header flex gap-3 mb-4 text-xs text-center  sm:max-w-md m-auto">
-        <span class="stepIndicator flex-1 pb-8 relative"></span>
-        <span class="stepIndicator flex-1 pb-8 relative"></span>
-        <span class="stepIndicator flex-1 pb-8 relative"></span>
-        <span class="stepIndicator flex-1 pb-8 relative"></span>
-        <span class="stepIndicator flex-1 pb-8 relative"></span>
-    </div>
+    
     <input type="hidden" name="step" value="{{ $step }}">
     <input type="hidden" name="isEvaluator" value="{{ $isEvaluator ?? '' }}">
     <!-- end step indicators -->
@@ -33,8 +38,8 @@
     @if($step == 1)
     <!-- Step 1 -->
     <div id="step-1" class="step">
-        <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div class="w-full sm:max-w-md mt-6 mb-2 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <div class="d-flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <div class="w-full sm:max-w-md mt-6 mb-2 px-4 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <!-- メイン設定 -->
                 <div class="row">
                     <!-- <div class="mt-4 mb-4 m-auto font-xl font-bold">
@@ -82,12 +87,12 @@
 
                     <div class="mt-4  col-md-12">
                         <x-input-label for="application_methodology" class="mbs-input-required" :value="__('Application methodology')" :title="__('')" />
-                        <select name="application_methodology" id="application_methodology" class="border-gray-300 rounded-md block mt-1 w-full">
+                        <x-select name="application_methodology" id="application_methodology" class="border-gray-300 rounded-md block mt-1 w-full">
                             <option value="">{{__('選択してください')}}</option>
                             <option value="application_methodology1" {{ ($projectDetail->application_methodology ?? '') == 'application_methodology1' ? 'selected' : '' }}>1</option>
                             <option value="application_methodology2" {{ ($projectDetail->application_methodology ?? '') == 'application_methodology2' ? 'selected' : '' }}>2</option>
                             <option value="application_methodology3" {{ ($projectDetail->application_methodology ?? '') == 'application_methodology3' ? 'selected' : '' }}>3</option>
-                        </select>
+                        </x-select>
                         <x-input-error :messages="$errors->get('application_methodology')" class="mt-2" />
                     </div>
 
@@ -203,7 +208,7 @@
     <!-- Step 2 -->
     <div id="step-2" class="step">
         <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md mt-6 px-4 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <div class="row">
                     <!-- <div class="mt-4 mb-4 font-xl font-bold">
                         {{__('プロジェクト計画書 (PDD-1)')}}
@@ -301,7 +306,7 @@
     <!-- Step 3 -->
     <div id="step-3" class="step">
         <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md mt-6 px-4 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <div class="row">
                     <!-- <div class="mt-4 mb-4 font-xl font-bold">
                         {{__('プロジェクト計画書 (PDD-2)')}}
@@ -379,7 +384,7 @@
     <!-- Step 4 -->
     <div id="step-4" class="step">
         <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md mt-6 px-4 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <div class="row">
                     <!-- <div class="mt-4 mb-4 font-xl font-bold">
                         {{__('プロジェクト計画書 (PDD-3)')}}
@@ -482,7 +487,7 @@
     @if($step == 5)
     <div id="step-5" class="step">
         <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md mt-6 px-4 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <div class="row">
                     <!-- <div class="mt-4 mb-4 font-xl font-bold">
                         {{__('ESG+E評価')}}
@@ -502,9 +507,9 @@
                         <x-input-error :messages="$errors->get('esg_economic_evaluation')" class="mt-2" />
                     </div>
 
-                    <div class="mt-4  col-md-12">
-                        <div class="flex items-start">
-                            <x-checkbox-input name="pledge_compliance" id="pledge_compliance" class="mt-0.5" :checked="($projectDetail->pledge_compliance ?? '') == 'on'" />
+                    <div class="mt-4 col-md-12">
+                        <div class="d-flex align-items-start">
+                            <x-checkbox-input name="pledge_compliance" id="pledge_compliance" class="mt-1" :checked="($projectDetail->pledge_compliance ?? '') == 'on'" />
                             <div>
                                 <x-input-label for="pledge_compliance" :value="__('pledge compliance')" :title="__('')" />
                                 <x-input-error :messages="$errors->get('pledge_compliance')" class="mt-2" />

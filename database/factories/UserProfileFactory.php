@@ -22,8 +22,6 @@ class UserProfileFactory extends Factory
     {
         static $user_id = 1;
         return [
-            'company_name' => $this->faker->words(2,true),
-            'country' => $this->faker->country,
             'user_id' => $user_id++
         ];
     }
